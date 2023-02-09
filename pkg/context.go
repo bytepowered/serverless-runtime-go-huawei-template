@@ -1,7 +1,7 @@
-package context
+package pkg
 
 import (
-	"huaweicloud.com/go-runtime/pkg/runtime/common"
+	"huaweicloud.com/runtime/pkg/runtime/common"
 )
 
 type RuntimeContext interface {
@@ -32,6 +32,6 @@ type RuntimeContext interface {
 	GetPackage() string
 
 	GetToken() string
-	
+
 	GetSecurityToken() string
 }

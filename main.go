@@ -3,20 +3,19 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"huaweicloud.com/go-runtime/events"
-	"huaweicloud.com/go-runtime/go-api/context"
-	"huaweicloud.com/go-runtime/pkg/runtime"
+	"huaweicloud.com/runtime/pkg"
+	"huaweicloud.com/runtime/pkg/events"
 )
 
-func onHandleRequest(payload []byte, ctx context.RuntimeContext) (interface{}, error) {
-	var event events.APIGTriggerEvent
+func onHandleRequest(payload []byte, ctx pkg.RuntimeContext) (interface{}, error) {
+	var event events.TriggerEvent
 	err := json.Unmarshal(payload, &event)
 	if err != nil {
 		fmt.Println("Unmarshal failed")
 		return "invalid data", err
 	}
 	ctx.GetLogger().Logf("payload:%s", event.String())
-	resp := events.APIGTriggerResponse{
+	resp := events.TriggerResponse{
 		Body: event.String(),
 		Headers: map[string]string{
 			"content-type": "application/json",
@@ -27,5 +26,5 @@ func onHandleRequest(payload []byte, ctx context.RuntimeContext) (interface{}, e
 }
 
 func main() {
-	runtime.Register(onHandleRequest)
+	pkg.Register(onHandleRequest)
 }

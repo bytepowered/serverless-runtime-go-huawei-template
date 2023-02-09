@@ -4,15 +4,15 @@ import (
 	"fmt"
 )
 
-type APIGRequestContext struct {
+type RequestContext struct {
 	ApiId     string `json:"apiId"`
 	RequestId string `json:"requestId"`
 	Stage     string `json:"stage"`
 	SourceIp  string `json:"sourceIp"`
 }
 
-func (rc APIGRequestContext) String() string {
-	return fmt.Sprintf(`APIGRequestContext{
+func (rc RequestContext) String() string {
+	return fmt.Sprintf(`RequestContext{
                                  apiId='%s',
                                  requestId='%s',
                                  stage='%s',
